@@ -11,6 +11,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "Servd - AI Recipes Platform",
   description: "",
+  icons: {
+    icon: "/orange-logo.png",
+  },
 };
 
 export default function RootLayout({ children }) {
