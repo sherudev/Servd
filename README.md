@@ -7,7 +7,7 @@ Servd is an AI-powered cooking assistant built as a monorepo with a Next.js fron
 
 ## What’s new
 
-- **Surprise Me** landing page button that picks a random recipe and opens it instantly
+- **Surprise Me** landing page button with primary border styling that picks a random recipe and opens it instantly
 - **Recipe pantry comparison** with a dedicated `Check Missing Ingredients` flow
 - **Separate missing ingredient panel** so ingredients remain clean and easy to read
 - **Improved Strapi response handling** and server error logging for better backend diagnostics
@@ -110,7 +110,7 @@ npm run deploy
 
 ### Latest updates
 
-- Added `Surprise Me` landing page button for random recipe selection
+- Added `Surprise Me` landing page button with primary border styling for random recipe selection
 - Added missing ingredient detection and a dedicated missing ingredients panel
 - Improved recipe page UI and cleaned ingredient list layout
 - Improved Strapi response handling and backend error logging

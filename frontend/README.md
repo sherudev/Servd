@@ -84,7 +84,7 @@ npm run lint
 
 ### Latest frontend updates
 
-- Added `Surprise Me` button to the landing page for one-click random recipe discovery
+- Added `Surprise Me` button to the landing page for one-click random recipe discovery with a primary border style
 - Added recipe pantry comparison with `Check Missing Ingredients`
 - Moved missing ingredient results into a separate panel for a cleaner ingredient list
 - Added save/remove collection and recipe PDF export support

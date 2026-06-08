@@ -32,7 +32,7 @@ export default function SurpriseMeButton() {
       onClick={handleClick}
       size="xl"
       variant="secondary"
-      className="px-8 py-6 text-lg"
+      className="px-8 py-6 text-lg border-2 border-orange-600 bg-white text-orange-700 hover:bg-orange-50"
     >
       Surprise Me <ArrowRight className="ml-2 w-5 h-5" />
     </Button>

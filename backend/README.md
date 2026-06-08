@@ -69,6 +69,7 @@ Strapi supports many deployment options, including Strapi Cloud. Refer to the of
 ### Latest backend updates
 
 - Updated backend to support recipe generation and pantry item comparison flows
+- Added compatibility for the landing page `Surprise Me` random recipe action
 - Improved Strapi response normalization and error logging for frontend API calls
 - Ensured Content Types support for `recipes`, `pantry-items`, `saved-recipes`, and `users`
 
