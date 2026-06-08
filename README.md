@@ -2,6 +2,28 @@
 
 Servd is an AI-powered cooking assistant built as a monorepo with a Next.js frontend and a Strapi backend. The app helps users generate recipes, compare pantry items, save favorites, and discover new dishes quickly.
 
+## Screenshots 👈 ADD HERE
+
+### Landing
+
+![Landing](./public/screenshots/landing.png)
+
+### Dashboard
+
+![Dashbord](./public/screenshots/dashboard.png)
+
+### Pantry
+
+![Pantry](./public/screenshots/pantry.png)
+
+### AI Scan
+
+![AIScan](./public/screenshots/aiscan.png)
+
+### Random Recipe
+
+![Random](./public/screenshots/random.png)
+
 - `frontend/` — Next.js application with Clerk auth, AI recipe generation, pantry comparison, recipe export, and a modern landing experience
 - `backend/` — Strapi CMS backend for users, pantry items, recipe storage, and saved recipe collections
 
