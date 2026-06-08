@@ -360,7 +360,7 @@ function RecipeContent() {
                   if (!acc[cat]) acc[cat] = [];
                   acc[cat].push(ing);
                   return acc;
-                }, {})
+                }, {}),
               ).map(([category, items]) => (
                 <div key={category} className="mb-6 last:mb-0">
                   <h3 className="text-sm font-bold text-stone-500 uppercase tracking-wide mb-3">

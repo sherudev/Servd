@@ -41,7 +41,7 @@ export async function scanPantryImage(formData) {
             isPro
               ? "Please contact support if you need more scans."
               : "Upgrade to Pro for unlimited scans!"
-          }`
+          }`,
         );
       }
       throw new Error("Request denied by security system");
@@ -109,7 +109,7 @@ Rules:
 
     if (!Array.isArray(ingredients) || ingredients.length === 0) {
       throw new Error(
-        "No ingredients detected in the image. Please try a clearer photo."
+        "No ingredients detected in the image. Please try a clearer photo.",
       );
     }
 
@@ -241,7 +241,7 @@ export async function getPantryItems() {
           Authorization: `Bearer ${STRAPI_API_TOKEN}`,
         },
         cache: "no-store",
-      }
+      },
     );
 
     if (!response.ok) {
@@ -250,11 +250,19 @@ export async function getPantryItems() {
 
     const data = await response.json();
 
+    const normalizedItems = (data.data || []).map((item) => ({
+      id: item.id,
+      name: item.attributes?.name ?? item.name,
+      quantity: item.attributes?.quantity ?? item.quantity,
+      imageUrl: item.attributes?.imageUrl ?? item.imageUrl,
+      owner: item.attributes?.owner ?? item.owner,
+    }));
+
     const isPro = user.subscriptionTier === "pro";
 
     return {
       success: true,
-      items: data.data || [],
+      items: normalizedItems,
       scansLimit: isPro ? "unlimited" : 10,
     };
   } catch (error) {
