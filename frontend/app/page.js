@@ -9,6 +9,7 @@ import { auth } from "@clerk/nextjs/server";
 import { SITE_STATS, FEATURES, HOW_IT_WORKS_STEPS } from "@/lib/data";
 import PricingSection from "@/components/PricingSection";
 import Link from "next/link";
+import SurpriseMeButton from "@/components/SurpriseMeButton";
 
 export default async function LandingPage() {
   const { has } = await auth();
@@ -44,15 +45,19 @@ export default async function LandingPage() {
                 Save money, reduce waste, and eat better tonight.
               </p>
 
-              <Link href="/dashboard">
-                <Button
-                  size="xl"
-                  variant="primary"
-                  className="px-8 py-6 text-lg"
-                >
-                  Start Cooking Free <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
-              </Link>
+              <div className="flex flex-wrap gap-3 items-center">
+                <Link href="/dashboard">
+                  <Button
+                    size="xl"
+                    variant="primary"
+                    className="px-8 py-6 text-lg"
+                  >
+                    Start Cooking Free <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </Link>
+
+                <SurpriseMeButton />
+              </div>
 
               <p className="mt-6 text-sm text-stone-500">
                 <span className="font-bold text-stone-900">10k+ cooks</span>{" "}

@@ -1,40 +1,39 @@
-# Servd
+# Servd Frontend
 
-Servd is an AI-powered cooking assistant and pantry manager built with a Next.js frontend and a Strapi backend.
+This is the Next.js frontend for Servd, the AI cooking assistant. It provides the landing experience, recipe generation, pantry comparison, and user-facing recipe pages.
 
-## What this app does
+## What’s included
 
-- Authenticate users with Clerk
-- Scan pantry/fridge images using Gemini Vision and Arcjet protection
-- Generate personalized recipes using Gemini generative AI
-- Fetch recipe images from Unsplash when available
-- Store pantry items, recipes, and saved recipes in Strapi
-- Save favorite recipes, browse by category or cuisine, and export recipe PDFs
-- Provide free / pro usage limits with rate limiting via Arcjet
+- **Landing page** with `Start Cooking Free` and a new `Surprise Me` button
+- **Recipe page** that loads a recipe from the query parameter `cook`
+- **Pantry comparison** with `Check Missing Ingredients`
+- **Dedicated missing ingredients panel** instead of inline row coloring
+- **Save/remove recipe collection** actions
+- **PDF export** for recipe details
+- **Pro-only sections** for nutrition, tips, and substitutions
+- **Clerk auth** for sign-in, sign-up, and protected routes
 
-## Key features
+## New frontend features
 
-- **Pantry scanning**: upload or capture an image and automatically recognize ingredients
-- **AI recipe generation**: generate new recipes from ingredient names or search terms
-- **Saved cookbook**: save recipes for later and manage favorites
-- **Recipe details**: prep time, cook time, servings, ingredients, instructions, nutrition, tips, and substitutions
-- **User auth**: Clerk-powered sign in / sign up flows
-- **Backend CMS**: Strapi stores recipes, pantry items, and saved recipe data
-- **PDF export**: export recipes as printable PDFs
-- **Rate limiting**: Arcjet protects image scanning and recipe generation endpoints
+- **Surprise Me** randomly chooses a dish and navigates to `/recipe?cook=<dish>`
+- **Missing ingredient detection** compares recipe ingredients against pantry items
+- **Recipe UI cleanup**: ingredient list rows remain consistent while missing items are shown separately
+- **Better error handling** for Strapi responses and missing or failed data loads
 
 ## Tech stack
 
-- Frontend: `Next.js`, `React`, `Tailwind CSS`, `Radix UI`
-- Auth: `@clerk/nextjs`
-- AI: `@google/generative-ai` (Gemini)
-- Image search: `Unsplash API`
-- API protection: `@arcjet/next`
-- Backend: `Strapi`, `PostgreSQL` (via `pg`)
+- Next.js App Router
+- React 19
+- Tailwind CSS
+- Radix UI primitives
+- Clerk auth
+- Google Gemini API
+- Unsplash image search
+- Sonner toast notifications
 
 ## Environment variables
 
-Create or update `frontend/.env` with the following values:
+Create or update `frontend/.env`:
 
 ```env
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
@@ -48,57 +47,24 @@ GEMINI_API_KEY=
 UNSPLASH_ACCESS_KEY=
 ```
 
-### What each value does
-
-- `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`: Clerk publishable API key for client-side auth
-- `CLERK_SECRET_KEY`: Clerk secret API key for server-side auth
-- `NEXT_PUBLIC_CLERK_SIGN_IN_URL`: Clerk sign-in route
-- `NEXT_PUBLIC_CLERK_SIGN_UP_URL`: Clerk sign-up route
-- `ARCJET_KEY`: Arcjet key for protecting requests and enforcing free/pro limits
-- `NEXT_PUBLIC_STRAPI_URL`: URL of the Strapi backend
-- `STRAPI_API_TOKEN`: Strapi API token used by server actions to read/write content
-- `GEMINI_API_KEY`: Google Gemini API key for recipe generation and image recognition
-- `UNSPLASH_ACCESS_KEY`: Unsplash API key for fetching recipe images
-
-> Note: The current `.env` file contains keys for a deployed Strapi backend. For local development, replace `NEXT_PUBLIC_STRAPI_URL` and `STRAPI_API_TOKEN` with your own local Strapi values.
-
 ## Setup
 
-### 1. Install dependencies
+1. Install frontend dependencies:
 
 ```bash
 cd frontend
 npm install
 ```
 
-```bash
-cd ../backend
-npm install
-```
-
-### 2. Configure the backend
-
-If you run Strapi locally, update the backend config and environment values as needed.
+2. Start the app:
 
 ```bash
-cd backend
-npm run develop
-```
-
-By default, Strapi runs on `http://localhost:1337`.
-
-### 3. Start the frontend
-
-```bash
-cd ../frontend
 npm run dev
 ```
 
-Open `http://localhost:3000` in your browser.
+3. Open `http://localhost:3000`
 
-## Useful scripts
-
-### Frontend
+## Key scripts
 
 ```bash
 npm run dev
@@ -107,25 +73,29 @@ npm run start
 npm run lint
 ```
 
-### Backend
+## Feature notes
 
-```bash
-npm run develop
-npm run start
-npm run build
-npm run deploy
-```
+- The homepage uses the `SurpriseMeButton` component to choose a random recipe title.
+- Recipe generation is driven by `frontend/actions/recipe.actions.js`.
+- Pantry comparison is handled by `frontend/actions/pantry.actions.js` and displayed on the recipe page.
+- The frontend expects Strapi to serve content types for recipes, pantry items, saved recipes, and users.
 
-## Notes
+## Changelog
 
-- The frontend expects the Strapi backend to expose content types for `recipes`, `pantry-items`, and `saved-recipes`.
-- The app uses Clerk for authentication and stores a mapped Strapi user record via `clerkId`.
-- If you want to use a local database, ensure PostgreSQL is configured for Strapi.
+### Latest frontend updates
 
-## Project structure
+- Added `Surprise Me` button to the landing page for one-click random recipe discovery
+- Added recipe pantry comparison with `Check Missing Ingredients`
+- Moved missing ingredient results into a separate panel for a cleaner ingredient list
+- Added save/remove collection and recipe PDF export support
 
-- `frontend/`: Next.js app with AI recipe, pantry, and auth flows
-- `backend/`: Strapi CMS and API for storing recipes and pantry data
+## Recommended flow
+
+1. Launch the frontend
+2. Sign in via Clerk
+3. Use `Start Cooking Free` or `Surprise Me`
+4. On the recipe page, click `Check Missing Ingredients`
+5. Save the recipe or download it as a PDF
 
 ---
 

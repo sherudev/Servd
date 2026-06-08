@@ -1,61 +1,83 @@
-# 🚀 Getting started with Strapi
+# Servd Backend
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
+This backend powers Servd using Strapi as the content management system for recipes, pantry items, saved recipes, and user mappings.
 
-### `develop`
+## Backend responsibilities
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
+- Store and manage recipe content
+- Store pantry items and user pantry collections
+- Manage saved recipe collections
+- Provide Strapi-based API access for frontend actions
+- Support user mapping from Clerk identities to Strapi users
+- Provide backend logging and normalized response handling for better reliability
 
+## Local development
+
+### 1. Install dependencies
+
+```bash
+cd backend
+npm install
 ```
+
+### 2. Run Strapi in development mode
+
+```bash
 npm run develop
-# or
-yarn develop
 ```
 
-### `start`
+This starts Strapi with auto-reload and opens the admin interface at `http://localhost:1337`.
 
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
+### 3. Build the admin panel
 
-```
-npm run start
-# or
-yarn start
-```
-
-### `build`
-
-Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
-
-```
+```bash
 npm run build
-# or
-yarn build
 ```
 
-## ⚙️ Deployment
+### 4. Start Strapi in production mode
 
-Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
-
-```
-yarn strapi deploy
+```bash
+npm run start
 ```
 
-## 📚 Learn more
+## Strapi setup notes
 
-- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
-- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
-- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
-- [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
-- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
+- Make sure your database is configured in `backend/config/database.js` or environment variables.
+- The frontend expects the backend to expose the following content types:
+  - `recipes`
+  - `pantry-items`
+  - `saved-recipes`
+  - `users`
+- Ensure the `STRAPI_API_TOKEN` value matches the token referenced by the frontend.
+- Use the same base URL in the frontend `NEXT_PUBLIC_STRAPI_URL` setting.
 
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
+## Useful scripts
 
-## ✨ Community
+```bash
+npm run develop
+npm run build
+npm run start
+npm run deploy
+```
 
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
-- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
+## Deployment
+
+Strapi supports many deployment options, including Strapi Cloud. Refer to the official deployment guide to choose the right option for your environment.
+
+## Changelog
+
+### Latest backend updates
+
+- Updated backend to support recipe generation and pantry item comparison flows
+- Improved Strapi response normalization and error logging for frontend API calls
+- Ensured Content Types support for `recipes`, `pantry-items`, `saved-recipes`, and `users`
+
+## Helpful links
+
+- [Strapi documentation](https://docs.strapi.io) - Official docs for Strapi setup, plugins, and deployment
+- [Strapi deployment guide](https://docs.strapi.io/dev-docs/deployment) - Deployment recommendations and platform-specific instructions
+- [Strapi community](https://discord.strapi.io) - Chat with the Strapi community
 
 ---
 
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+Happy backend building! 🔧

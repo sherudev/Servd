@@ -1,24 +1,33 @@
 # Servd
 
-Servd is an AI-powered cooking assistant that helps users scan pantry items, generate recipes, save favorites, and manage meal planning. It is built as a monorepo with:
+Servd is an AI-powered cooking assistant built as a monorepo with a Next.js frontend and a Strapi backend. The app helps users generate recipes, compare pantry items, save favorites, and discover new dishes quickly.
 
-- `frontend/` — Next.js app with Clerk auth, Gemini AI recipe generation, Arcjet protection, and Unsplash image search
-- `backend/` — Strapi CMS backend for recipes, pantry items, users, and saved recipes
+- `frontend/` — Next.js application with Clerk auth, AI recipe generation, pantry comparison, recipe export, and a modern landing experience
+- `backend/` — Strapi CMS backend for users, pantry items, recipe storage, and saved recipe collections
+
+## What’s new
+
+- **Surprise Me** landing page button that picks a random recipe and opens it instantly
+- **Recipe pantry comparison** with a dedicated `Check Missing Ingredients` flow
+- **Separate missing ingredient panel** so ingredients remain clean and easy to read
+- **Improved Strapi response handling** and server error logging for better backend diagnostics
+- **Recipe PDF export**, save/remove collection actions, and pro-only nutrition/tip gating
 
 ## Project structure
 
-- `frontend/` — Next.js frontend application
-- `backend/` — Strapi backend application
+- `frontend/` — Next.js app with AI flows, auth, pantry comparison, and recipe details
+- `backend/` — Strapi CMS backend and API for content storage
 
 ## Features
 
-- User authentication with Clerk
-- Pantry image scanning powered by Gemini Vision
-- AI recipe generation using Gemini generative AI
-- Unsplash-powered recipe images
-- Save recipes and pantry items in Strapi
-- PDF export for recipes
-- Free / Pro usage tiers with Arcjet rate limiting
+- Landing page with `Start Cooking Free` and `Surprise Me` actions
+- AI-generated recipes based on selected dish name or user input
+- Pantry item comparison and missing ingredient detection
+- Save recipes to a personal collection
+- Download recipes as PDF
+- Free / Pro usage tiers with Arcjet request protection
+- Clerk authentication and Strapi-backed user mapping
+- Strapi CMS for recipes, pantry items, saved recipes, and users
 
 ## Getting started
 
@@ -34,9 +43,7 @@ npm install
 
 ### 2. Configure environment variables
 
-Frontend environment variables are stored in `frontend/.env`.
-
-Create or update this file with:
+Create or update `frontend/.env` with:
 
 ```env
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
@@ -50,25 +57,25 @@ GEMINI_API_KEY=
 UNSPLASH_ACCESS_KEY=
 ```
 
-Backend configuration is managed by Strapi. If you run Strapi locally, make sure your database is configured correctly and use the same `NEXT_PUBLIC_STRAPI_URL` and `STRAPI_API_TOKEN` in the frontend.
+If you run Strapi locally, make sure the backend is reachable at `NEXT_PUBLIC_STRAPI_URL` and the frontend uses the same `STRAPI_API_TOKEN`.
 
-### 3. Run the backend
+### 3. Start Strapi backend
 
 ```bash
 cd backend
 npm run develop
 ```
 
-Strapi will start on `http://localhost:1337` by default.
+Then open `http://localhost:1337` for the Strapi admin dashboard.
 
-### 4. Run the frontend
+### 4. Start frontend
 
 ```bash
-cd frontend
+cd ../frontend
 npm run dev
 ```
 
-Open `http://localhost:3000` to view the app.
+Open `http://localhost:3000` and use the landing page buttons to explore the app.
 
 ## Useful scripts
 
@@ -94,17 +101,25 @@ npm run deploy
 
 ## Notes
 
-- The frontend expects the Strapi backend to expose the content types used by the app: `recipes`, `pantry-items`, `saved-recipes`, and `users`.
-- Clerk is used for authentication and user mapping.
-- Arcjet is used for rate limiting free and pro usage tiers.
-- Gemini requires the `GEMINI_API_KEY` environment variable.
-- Unsplash image search requires `UNSPLASH_ACCESS_KEY`.
+- The frontend currently expects Strapi content types for `recipes`, `pantry-items`, `saved-recipes`, and `users`.
+- Use Clerk for authentication and user mapping via `clerkId`.
+- The app uses Gemini for AI recipe generation and vision-based pantry handling.
+- Unsplash is used to fetch recipe images when available.
 
-## Additional documentation
+## Changelog
 
-- See `frontend/README.md` for frontend-specific details and setup
-- See `backend/README.md` for backend-specific Strapi commands and deployment notes
+### Latest updates
+
+- Added `Surprise Me` landing page button for random recipe selection
+- Added missing ingredient detection and a dedicated missing ingredients panel
+- Improved recipe page UI and cleaned ingredient list layout
+- Improved Strapi response handling and backend error logging
+
+## More documentation
+
+- See `frontend/README.md` for frontend-specific setup and feature details
+- See `backend/README.md` for Strapi-specific commands and deployment notes
 
 ---
 
-Happy cooking! 🍽️
+Happy cooking! 🍳
